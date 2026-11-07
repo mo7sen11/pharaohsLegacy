@@ -1,0 +1,239 @@
+:root {
+  --main-color: #dda556;
+  --main-gradient: linear-gradient(45deg, #8c5e3a, #cc9457);
+}
+
+.bg-main {
+  background-color: var(--main-color);
+}
+.text-main {
+  color: var(--main-color);
+}
+.duration-2s {
+  --animation-duration: 2s;
+}
+/* start of section style */
+main {
+  background-color: #111111;
+  overflow: hidden;
+  height: 100dvh;
+}
+
+/* end of section style */
+
+/* start of form style */
+form {
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.71);
+  border-radius: 10%;
+  color: white;
+  background-color: #111111;
+}
+
+.logo {
+  margin: 0 auto;
+  position: relative;
+  bottom: 180px;
+}
+img {
+  max-width: 100%;
+}
+
+.form-control:focus {
+  border-color: var(--main-color);
+  box-shadow: none;
+  outline: 0;
+}
+
+.form-check-input {
+  border: 1px solid #999;
+}
+
+.form-check-input:focus {
+  border-color: #999;
+  outline: 0;
+  box-shadow: none;
+}
+.form-check-input:checked {
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+#to-signup-form-btn,
+#to-login-form-btn {
+  cursor: pointer;
+}
+input::placeholder {
+  transition: 0.6s all ease-in-out;
+}
+input:focus::placeholder {
+  opacity: 0;
+}
+input#rememberPassword,
+input#rememberPassword + label {
+  cursor: pointer;
+}
+
+/*start background style */
+.hieroglyph {
+  position: absolute;
+  font-size: 32px;
+  color: #ffd700;
+  opacity: 0.8;
+}
+
+.pyramid-small {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 40px solid #ffd700;
+  opacity: 0.4;
+}
+
+.column {
+  position: absolute;
+  width: 30px;
+  height: 200px;
+  background: linear-gradient(to bottom, #ffd700, #daa520);
+  opacity: 0.3;
+}
+
+.golden-circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #ffd700;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.sacred-symbol {
+  position: absolute;
+  font-size: 48px;
+  color: #ffd700;
+  opacity: 0.6;
+  /* z-index: -1; */
+}
+
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes rotateSlowly {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ffd700;
+  border-radius: 50%;
+}
+
+/*end  background style */
+input#phone
+{
+  color: #111111;
+}
+
+.iti {
+  --iti-path-flags-1x: url('../images/flags.webp');
+  --iti-path-flags-2x: url('../images/flags@2x.webp');
+  --iti-path-globe-1x: url('../images/globe.webp');
+  --iti-path-globe-2x: url('../images/globe@2x.webp');
+}
+
+div.g_id_signin
+{
+  width: fit-content;
+  margin: auto;
+}
+
+.toast {
+  opacity: 1 !important;
+}
+.text-danger{
+  color: #ff6b6b!important;
+}
+
+
+@media screen and (max-width:767px) {
+  p#s-password-message,
+  p#s-cpassword-message,
+  p#s-name-message,
+  p#l-p-message
+{
+  font-size: 14px;
+}
+}
+
+
+.loader-container
+{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111111dc;
+  z-index: 99999;
+
+}
+
+button:disabled{
+  cursor: not-allowed !important;
+  pointer-events: none  !important;
+ opacity: 0.6;
+ background-color: #666 !important;
+}
+
+
+
+/* google button design  */
+.google-signin-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  color: #4285F4;
+}
+
+.google-signin-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.google-signin-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(66, 133, 244, 0.3);
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}

@@ -1,0 +1,205 @@
+/* Main Color Variables */
+:root {
+  --main-dark: #111111;
+  --main-light: #f5f5f5;
+  --main-yellow: #ffc107;
+  --accent-gold: #d4af37;
+  --dark-yellow: #c49102;
+  --card-bg: #222222;
+  --text-muted: #aaaaaa;
+}
+
+body {
+  background-color: var(--main-dark);
+  color: var(--main-light);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Egyptian theme decorative elements */
+.sacred-symbol {
+  position: fixed;
+  font-size: 2rem;
+  color: var(--accent-gold);
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.hieroglyph {
+  position: fixed;
+  font-size: 2.5rem;
+  color: var(--accent-gold);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* Text colors */
+.text-yellow {
+  color: var(--main-yellow) !important;
+}
+
+/* Main Sections */
+.search-section {
+  background-color: rgba(20, 20, 20, 0.7);
+  border: 1px solid var(--dark-yellow);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Form Controls */
+.form-control,
+.form-select {
+  background-color: rgba(40, 40, 40, 0.8);
+  border: 1px solid var(--dark-yellow);
+  color: var(--main-light);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: rgba(50, 50, 50, 0.8);
+  border-color: var(--main-yellow);
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+  color: var(--main-light);
+}
+
+.form-label {
+  color: var(--main-yellow);
+}
+#hotelName::placeholder {
+  color: #f5f5f5;
+}
+/* Buttons */
+.btn-main {
+  background-color: var(--main-yellow);
+  color: var(--main-dark);
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-main:hover {
+  background-color: var(--dark-yellow);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Hotel Cards */
+.hotel-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  height: 100%;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+}
+
+.hotel-img {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.hotel-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.hotel-card:hover .hotel-img img {
+  transform: scale(1.1);
+}
+
+.hotel-type {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--main-yellow);
+  color: var(--main-dark);
+  padding: 5px 10px;
+  /* border-radius: 5px; */
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.hotel-name {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.hotel-location {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.hotel-desc {
+  color: var(--main-light);
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hotel-rating {
+  display: flex;
+  align-items: center;
+}
+
+.rating-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stars {
+  display: flex;
+}
+
+.rating-value {
+  color: var(--main-yellow);
+  font-size: 0.9rem;
+}
+
+.rating-count {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+
+
+
+.loader {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #FF3D00;
+  position: relative;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 0;
+  background: #fff;
+  transform: rotate(0deg) translate(30px);
+  animation: rotate 1s ease infinite;
+}
+.loader:after {
+  animation-delay: 0.5s
+}
+@keyframes rotate {
+  100% {transform: rotate(360deg) translate(30px)
+}
+}
