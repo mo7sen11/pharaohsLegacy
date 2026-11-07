@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login or Register | Explore Egypt - Tourism Portal</title>
+
+  <meta name="description"
+    content="Sign in or create an account to access your personalized travel experience in Egypt. Discover landmarks, hotels, virtual tours, restaurants, and more.">
+
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="canonical" href="https://pharaohslegacy.cloud/auth" />
+
+  <meta property="og:title" content="Login or Register | Explore Egypt" />
+  <meta property="og:description"
+    content="Access your account or register to explore top Egyptian landmarks, virtual tours, hotels, and more." />
+  <meta property="og:url" content="https://pharaohslegacy.cloud/auth" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://pharaohslegacy.cloud/images/meta-tag-logo.jpg" />
+
+  <script>
+    fetch('https://pharaohslegacy.cloud/api/auth/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('userData')}`
+      }
+    })
+    .then((res) => {
+      res.json();
+      console.log(res);
+      if(res.status === 200){
+          window.location.href = 'index.html';
+          return;
+      }
+    })
+    
+    .catch((error) => {
+      
+    });
+  </script>
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/intlTelInput.min.css">
+  <link rel="stylesheet" href="css/toastr.min.css">
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="shortcut icon" href="images/meta-tag-logo.jpg" type="image/x-icon">
+
+  <!-- JS files -->
+  <script defer src="js/jwt.min.js"></script>
+  <script defer src="js/bootstrap.bundle.min.js"></script>
+  <script defer src="js/intlTelInputWithUtils.min.js"></script>
+  <script defer src="js/jquery-3.7.1.min.js"></script>
+  <script defer src="js/toastr.min.js"></script>
+  <script defer src="js/auth.js"></script>
+  <script defer src="https://accounts.google.com/gsi/client?hl=en"></script>
+</head>
+
+<body class="overflow-hidden">
+
+
+  <main class="container-fluid">
+    <div class="row justify-content-center align-content-center   position-relative  z-3  top-50 translate-middle-y">
+      <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-4 ">
+        <section class="forms">
+          <!-- login form -->
+          <form id="login"
+            class="py-3 px-3  px-md-5 py-md-5   animate__animated  animate__slower animate__zoomIn animate__delay-1s w-auto">
+            <h2 class="fw-medium text-center mb-3 mt-2">WELCOME BACK</h2>
+
+            <div class="mb-3">
+              <label for="l-email" class="form-label fw-semibold">Email</label>
+              <input type="text" name="email" class="form-control" id="l-email" placeholder="Example@gmail.com"
+                autocomplete="off" />
+              <div class="login-email-message d-flex align-items-center gap-2 mt-1 text-danger d-none">
+                <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+                <p id="l-e-message" class="m-0"></p>
+              </div>
+            </div>
+
+
+            <label for="l-Password" class="form-label fw-medium">Password</label>
+            <div class="position-relative mb-3">
+              <input type="password" name="Password" class="form-control" id="l-Password"
+                placeholder="Must be 8 characters" />
+
+              <div class="login-password-message d-flex align-items-center gap-2 mt-1 text-danger d-none">
+                <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+                <p id="l-p-message" class="m-0"></p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between gap-2 gap-lg-4  ">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="rememberPassword" />
+                <label class="form-check-label" for="rememberPassword">
+                  Remember me
+                </label>
+              </div>
+
+              <p>
+                <a id="forget-password" href="forgetpassword.html" class="text-white">Forgot Password?</a>
+              </p>
+            </div>
+            <button type="button" id="login-btn" class="btn-main w-100 mt-4 mb-2 fw-medium fs-5 ">
+              <i class="fa-solid fa-spinner fa-spin d-none py-1"></i><span class="d-block"> Login</span>
+            </button>
+            <p class="text-center  mb-5">
+              Don't have an account
+              <span id="to-signup-form-btn" class="text-main">Sign Up</span>
+            </p>
+            <button type="button" class="google-signin-btn d-block mx-auto">
+              <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo" class="google-logo">
+              <span>Sign in with Google</span>
+          </button>
+          </form>
+          <!-- register  form -->
+          <form id="register" class=" py-3 px-3   animate__animated  animate__slower d-none  w-auto">
+            <h2 class="my-2 text-center fw-medium ">
+              Create an account
+            </h2>
+            <div class="mb-2">
+              <label for="name" class="form-label fw-semibold">Name</label>
+              <input type="text" name="name" class="form-control" id="name" autocomplete="off"
+                placeholder="Enter your name" />
+              <div class="sign-name-message d-flex align-items-center gap-2 mt-1 text-danger d-none ">
+                <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+                <p id="s-name-message" class="m-0"></p>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="s-email" class="form-label fw-semibold">Email</label>
+              <input type="text" name="email" class="form-control" id="s-email" placeholder="Enter your email"
+                autocomplete="off" />
+              <div class="sign-email-message d-flex align-items-center gap-2 mt-1 text-danger d-none">
+                <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+                <p id="s-email-message" class="m-0"></p>
+              </div>
+            </div>
+
+            <div class="mb-2 text-dark">
+              <label for="phone" class="form-label fw-semibold text-white">Phone</label><br>
+              <input type="tel" name="phone" class="form-control" id="phone" autocomplete="off" />
+              <div class="sign-phone-message d-flex align-items-center gap-2 mt-1 text-danger d-none">
+                <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+                <p id="s-phone-message" class="m-0"></p>
+              </div>
+            </div>
+            <!-- <div class="mb-2"> -->
+            <label for="s-Password" class="form-label fw-medium">Password</label>
+            <div class="mb-2">
+              <input type="password" name="Password" class="form-control" id="s-Password"
+                placeholder="Must be 8 characters" />
+              <div class="sign-password-message d-flex align-items-center gap-2 mt-1 text-danger d-none">
+                <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+                <p id="s-password-message" class="m-0"></p>
+              </div>
+            </div>
+            <label for="confirmPassword" class="form-label fw-medium">Confirm Password</label>
+            <div class="mb-2">
+              <input type="password" name="confirmPassword" class="form-control" id="confirmPassword"
+                placeholder="Must be same as password" />
+              <div class="sign-cpassword-message d-flex align-items-center gap-2 mt-1 text-danger d-none">
+                <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+                <p id="s-cpassword-message" class="m-0"></p>
+              </div>
+            </div>
+
+            <button id="sing-up-btn" type="button" class="btn-main my-4 fw-medium fs-5">
+              <i class="fa-solid fa-spinner fa-spin d-none py-1"></i><span class="d-block"> Sign Up</span>
+            </button>
+            <p class="text-center">
+              have an account?
+              <span id="to-login-form-btn" class="text-main"> Login</span>
+            </p>
+          </form>
+        </section>
+      </div>
+    </div>
+
+
+  </main>
+  <!-- Corners -->
+  <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+    style="top: 20px; left: 20px;">𓁹</div>
+  <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+    style="top: 20px; right: 20px;">𓂀</div>
+  <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+    style="bottom: 20px; left: 20px;">𓃭</div>
+  <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+    style="bottom: 20px; right: 20px;">𓅱</div>
+
+  <!-- Floating Hieroglyphs -->
+  <div class="hieroglyph animate__animated animate__bounce animate__infinite animate__slower"
+    style="top: 15%; left: 10%;">𓊽</div>
+  <div class="hieroglyph animate__animated animate__pulse animate__infinite animate__slower"
+    style="top: 25%; right: 15%;">☥</div>
+  <div class="hieroglyph animate__animated animate__swing animate__infinite animate__slower"
+    style="bottom: 20%; left: 15%;">𓆸</div>
+  <div class="hieroglyph animate__animated animate__flash animate__infinite animate__slower"
+    style="bottom: 30%; right: 10%;">𓅓</div>
+
+  <!-- Additional Hieroglyphs with Different Animations -->
+  <div class="hieroglyph animate__animated animate__shakeX animate__infinite animate__slower"
+    style="top: 40%; left: 20%;">𓂋</div>
+  <div class="hieroglyph animate__animated animate__shakeY animate__infinite animate__slower"
+    style="top: 60%; right: 25%;">𓃀</div>
+  <div class="hieroglyph animate__animated animate__wobble animate__infinite animate__slower"
+    style="bottom: 45%; left: 30%;">𓆣</div>
+
+  <!-- Decorative Elements -->
+  <div class="column animate__animated animate__slideInUp animate__slower" style="left: 5%; bottom: 0;"></div>
+  <div class="column animate__animated animate__slideInUp animate__slower" style="right: 5%; bottom: 0;"></div>
+
+  <!-- Floating Circles -->
+  <div class="golden-circle animate__animated animate__zoomIn animate__infinite animate__slower"
+    style="top: 30%; left: 25%;"></div>
+  <div class="golden-circle animate__animated animate__zoomIn animate__infinite animate__slower"
+    style="bottom: 30%; right: 25%;"></div>
+
+  <!-- Small Pyramids -->
+  <div class="pyramid-small animate__animated animate__fadeInUp animate__infinite animate__slower"
+    style="bottom: 10%; left: 10%;"></div>
+  <div class="pyramid-small animate__animated animate__fadeInUp animate__infinite animate__slower"
+    style="bottom: 10%; right: 10%;"></div>
+</body>
+
+</html>

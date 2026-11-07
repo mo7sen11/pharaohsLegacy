@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Profile | Manage Your Account & Bookings</title>
+
+  <meta name="description"
+    content="Manage your personal profile, update account information, view your bookings, and delete your travel stories on your private dashboard.">
+
+  <meta name="robots" content="noindex, nofollow">
+  <script>
+    fetch('https://pharaohslegacy.cloud/api/auth/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('userData')}`
+      }
+    })
+    .then((res) => {
+      res.json();
+      console.log(res);
+      if(res.status !== 200){
+          window.location.href = 'index.html';
+          return;
+      }
+    })
+    
+    .catch((error) => {
+      
+    });
+  </script>
+  
+
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <link rel="stylesheet" href="css/intlTelInput.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/toastr.min.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+  <link rel="shortcut icon" href="images/meta-tag-logo.jpg" type="image/x-icon">
+  <!-- JS files  -->
+  <script defer src="js/intlTelInputWithUtils.min.js"></script>
+  <script defer src="js/bootstrap.bundle.min.js"></script>
+
+  <script defer src="js/jwt.min.js"></script>
+  <script defer src="js/jquery-3.7.1.min.js"></script>
+  <script defer src="js/toastr.min.js"></script>
+  <script defer src="js/global.js"></script>
+  <script defer src="js/profile.js"></script>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg px-3" id="nav-bar">
+    <a class="navbar-brand" href="index.html">
+      <img src="images/main-logo.png" alt="logo">
+    </a>
+
+    <!-- Toggle button for small screens -->
+    <button title="settings" class="navbar-toggler text-white fs-3" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Center nav for large screens only -->
+    <div class="d-none d-lg-flex  nav-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a data-name="index" class="nav-link fs-6 " href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a data-name="stories" class="nav-link fs-6 " href="stories.html"><i class="fa-solid fa-people-group"></i>
+            Stories</a>
+        </li>
+        <li class="nav-item">
+          <a data-name="virtualTour" class="nav-link fs-6 " href="virtualTour.html"><i
+              class="fa-solid fa-vr-cardboard"></i></i>
+            Virtual Tour</a>
+        </li>
+        <li class="nav-item dropdown categories-dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Categories</a>
+          <ul class="dropdown-menu ">
+            <li><a href="trips.html" class="dropdown-item" data-name="trips"><i
+                  class="fa-solid fa-suitcase-rolling me-1"></i> Trips</a></li>
+            <li><a href="hotels.html" class="dropdown-item" data-name="hotels"><i class="fa-solid fa-hotel me-1"></i>
+                Hotels</a></li>
+            <li><a href="airports.html" class="dropdown-item" data-name="airports"><i
+                  class="fa-solid fa-plane-departure me-1"></i> Airports</a></li>
+            <li><a href="landmarks.html" class="dropdown-item" data-name="landmarks"><i
+                  class="fa-solid fa-mountain-sun me-1"></i> Landmarks</a></li>
+            <li><a href="restaurants.html" class="dropdown-item" data-name="restaurants"><i
+                  class="fa-solid fa-utensils me-1"></i> Restaurants</a></li>
+            <li><a href="shoppingCenters.html" class="dropdown-item" data-name="shoppingcenters"><i
+                  class="fa-solid fa-shop me-1"></i> Shopping Centers</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+
+
+    <!-- Right side icons (desktop only) -->
+    <div class="d-none d-lg-flex ms-auto">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="nav-link" data-name="favorite" id="navbar-favorite-btn"><i class="fas fa-heart"></i>
+            Favorites</button>
+        </li>
+        <li class="nav-item dropdown settings-dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-cog"></i>
+            Settings</a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><button class="dropdown-item " data-name="profile" id="navbar-profile-btn"><i
+                  class="fas fa-user me-1"></i> Account</button></li>
+            <li><button class="dropdown-item text-danger d-none" id="logout-btn"> <i
+                  class="fa-solid fa-right-from-bracket me-1"></i> Logout</button></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Offcanvas Sidebar (Mobile) -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menu</h5>
+      <button title="close button" type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <a data-name="index" class="nav-link " href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a data-name="stories" class="nav-link " href="stories.html"><i class="fa-solid fa-people-group"></i>Stories</a>
+      <a data-name="virtualTour" class="nav-link " href="virtualTour.html"><i class="fa-solid fa-vr-cardboard"></i></i>
+        Virtual Tour</a>
+      <a data-name="landmarks" class="nav-link" href="landmarks.html"><i class="fa-solid fa-mountain-sun"></i>
+        Landmarks</a>
+      <a data-name="hotels" class="nav-link" href="hotels.html"><i class="fa-solid fa-hotel"></i> Hotels</a>
+      <a data-name="airports" class="nav-link" href="airports.html"><i class="fa-solid fa-plane-departure"></i>
+        Airports</a>
+      <a data-name="trips" class="nav-link" href="trips.html"><i class="fa-solid fa-suitcase-rolling"></i> Trips</a>
+      <a data-name="restaurants" class="nav-link" href="restaurants.html"><i class="fa-solid fa-utensils"></i>
+        Restaurants</a>
+      <a data-name="shoppingcenters" class="nav-link" href="shoppingCenters.html"><i class="fa-solid fa-shop"></i>
+        Shopping Centers</a>
+      <button class="nav-link" id="navbar-sidebar-favorite-btn" data-name="favorite"><i class="fas fa-heart"></i>
+        Favorites</button>
+      <button class="dropdown-item nav-link" data-name="profile" id="navbar-sidebar-profile-btn"><i
+          class="fas fa-user"></i>
+        Account</button>
+      <button class="dropdown-item text-danger d-none" id="logout-sidebar-btn"> <i
+          class="fa-solid fa-right-from-bracket "></i> Logout</button>
+    </div>
+  </div>
+  <!-- END Navbar -->
+
+
+  <main class=" pt-5 mt-5">
+    <div class="container">
+      <div class="header  mt-3 mb-4">
+        <h2 id="welcome-title" class=" text-warning fs-1 text-center text-capitalize text-truncate">Welcome, </h2>
+      </div>
+
+      <section
+        class="nav-buttons d-flex align-items-center row-gap-3 column-gap-2 flex-wrap flex-grow-1 justify-content-center my-3">
+        <button id="profile-btn" type="button" class="nav-btn px-3 py-2 rounded-5 user-info active">Profile
+          Info</button>
+        <button id="change-password-btn" type="button" class="nav-btn px-3 py-2 password rounded-5 ">Change
+          Password</button>
+        <button id="edit-profile-btn" type="button" class="nav-btn px-3 py-2 edit-profile rounded-5 ">Edit
+          Profile</button>
+        <button id="tickets-btn" type="button" class="nav-btn px-3 py-2 tickets rounded-5 ">My Bookings</button>
+        <button id="posts-btn" type="button" class="nav-btn px-3 py-2 posts rounded-5 ">Posts</button>
+      </section>
+
+      <!-- User Info Section -->
+      <section id="user-info"
+        class="card animate__animated animate__jackInTheBox animate__slower user-info active rounded-3 py-4 px-3 mb-5">
+
+
+      </section>
+
+      <!-- Change Password Section -->
+      <section id="password" class="card animate__animated animate__slideInUp animate__slow rounded-3 py-4 px-3 mb-5">
+        <h3 class="text-warning text-center fw-bold fs-2 mb-2 animate__animated animate__fadeInDown animate__delay-2s">
+          Change Password</h3>
+
+        <form id="passwordForm">
+          <div class="form-group mb-2">
+            <label for="current-password">Current Password</label>
+            <input class="form-control" type="password" id="current-password" required>
+            <div class="password-error-container text-danger ps-2 mt-1 mb-2">
+
+              <p class="password-error-message m-0  "></p>
+            </div>
+          </div>
+          <div class="form-group mb-2">
+            <label for="new-password">New Password</label>
+            <input class="form-control" type="password" id="new-password" required>
+          </div>
+          <div class="new-password-error-container text-danger ps-2 mt-1 mb-2">
+
+            <p class="new-password-error-message m-0  "></p>
+          </div>
+          <div class="form-group  mb-2">
+            <label for="confirm-password">Confirm New Password</label>
+            <input class="form-control" type="password" id="confirm-password" required>
+          </div>
+          <div class="confirm-password-error-container text-danger ps-2 mt-1 ">
+
+            <p class="confirm-password-error-message m-0  "></p>
+          </div>
+          <button class="submit-change-pass-btn mb-2 mt-3" type="button"> <span class="px-5 spin d-none"><i
+                class="fa-solid fa-spinner fa-spin"></i></span><span class="text">Update Password</span></button>
+        </form>
+      </section>
+      <!-- Edit Profile Section -->
+      <section id="edit-profile"
+        class="card animate__animated animate__slideInRight animate__slow  rounded-3 py-4 px-3 mb-5">
+        <h3 class="text-warning text-center fw-bold fs-2 mb-2 animate__animated animate__fadeInDown animate__delay-2s">
+          Update Information</h3>
+
+        <form id="editProfileForm">
+
+          <div class=" mb-2 text-white">
+            <label for="profile-img">Profile Image</label>
+            <input class="form-control " type="file" id="profile-img" accept="image/*">
+            <div class="cont-image-message d-flex align-items-center gap-2 mt-1 text-danger d-none ">
+              <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+              <p id="image-message" class="m-0"></p>
+            </div>
+          </div>
+          <div class="mb-2 text-white">
+            <label for="name" class="form-label fw-semibold">Name</label>
+            <input type="text" name="name" class="form-control" id="name" autocomplete="off"
+              placeholder="Enter your name" />
+            <div class="cont-name-message d-flex align-items-center gap-2 mt-1 text-danger d-none ">
+              <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+              <p id="name-message" class="m-0"></p>
+            </div>
+          </div>
+          <div class="mb-2 text-white">
+            <label for="email" class="form-label fw-semibold">Email <span class="text-white-50">(read
+                only)</span></label>
+            <input readonly type="text" name="email" class="form-control" id="email" placeholder="Enter your email"
+              autocomplete="off" />
+            <div class="cont-email-message d-flex align-items-center gap-2 mt-1 text-danger d-none">
+              <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+              <p id="email-message" class="m-0"></p>
+            </div>
+          </div>
+
+          <div class="mb-2 text-white">
+            <label for="phone" class="form-label fw-semibold ">Phone</label><br>
+            <input type="tel" name="phone" class="form-control" id="phone" autocomplete="off" />
+            <div class="cont-phone-message d-flex align-items-center gap-2 mt-1 text-danger d-none">
+              <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+              <p id="phone-message" class="m-0"></p>
+            </div>
+          </div>
+          <!-- <div class="mb-2"> -->
+          <label for="Password" class="form-label fw-medium text-white">Code</label>
+          <div class="mb-2 text-white">
+            <input type="text" name="Password" class="form-control" id="Password"
+              placeholder="Enter the 6-digit number you received" />
+            <div class="cont-password-message d-flex align-items-center gap-2 mt-1 text-danger d-none">
+              <i class="fa-solid fa-triangle-exclamation d-none d-sm-block"></i>
+              <p id="password-message" class="m-0"></p>
+            </div>
+          </div>
+
+
+          <div class="d-flex justify-content-center align-items-center ">
+
+            <button type="button" class="send-code-btn mb-2 mt-3">
+              <span class="px-5 spin d-none"><i class="fa-solid fa-spinner fa-spin"></i></span>
+              <span class="text"> Send Code</span>
+            </button>
+            <button type="button" class="update-data-btn mb-2 mt-3 d-none">
+              <span class="px-5 spin d-none"><i class="fa-solid fa-spinner fa-spin"></i></span>
+              <span class="text"> Save changes</span>
+            </button>
+          </div>
+
+        </form>
+      </section>
+
+
+
+      <!-- Previous Tickets Section -->
+      <section id="tickets" class="card animate__animated animate__slideInLeft animate__slow  rounded-3 py-4 px-3 mb-5">
+
+        <h3 class="text-warning text-center fw-bold fs-2 mb-3 animate__animated animate__fadeInDown animate__delay-2s">
+          My Tickets</h3>
+        <div id="ticketsContainer" class="row"></div>
+        <div id="emptyBookings" class="d-none">
+          <h4 class="fs-3 text-center text-white "><i class="fa-solid fa-bullhorn"></i> You Don't Have Any Previous
+            Booking Tickets</h4>
+          <p class="fs-6 text-center w-75 mx-auto text-white-50">
+
+            Ready for an epic adventure? Explore the wonders of Egypt with us — your next unforgettable trip starts
+            here!
+          </p>
+          <button class="go-to" onclick="window.location.href='trips.html'" type="button">Let's Go <i
+              class="fa-solid fa-arrow-up-right-from-square"></i></button>
+        </div>
+      </section>
+
+      <!-- User Posts Section -->
+      <section id="posts" class="card  animate__animated animate__slideInUp animate__slow  rounded-3 py-4 px-3 mb-5">
+        <h3 class="text-warning text-center fw-bold fs-2 mb-4 animate__animated animate__fadeInDown animate__delay-2s">
+          My Posts</h3>
+        <div id="postsContainer" class="row animate__animated animate__fadeInUp animate__delay-1s "></div>
+        <div id="emptyPosts" class="d-none">
+          <h4 class="fs-3 text-center text-white "><i class="fa-solid fa-bullhorn"></i> You Don't Share Any Post</h4>
+          <p class="fs-6 text-center w-75 mx-auto text-white-50">Share your experiences, stories, and adventures with
+            the world by
+            creating posts. Let others discover your travel tips and recommendations.</p>
+          <button class="go-to" onclick="window.location.href='stories.html'" type="button">Let's Go <i
+              class="fa-solid fa-arrow-up-right-from-square"></i></button>
+        </div>
+      </section>
+
+
+    </div>
+
+
+    <section id="loginModal" class="modal">
+      <div class="modal-content">
+        <h2>Login Required</h2>
+        <p>You must log in first to perform this action.</p>
+        <div class="modal-buttons">
+          <button id="login-modal-btn" onclick="authLoginGoToLogin()">Log In</button>
+          <button id="close-modal-btn" onclick="authLoginCloseModal()">Close</button>
+        </div>
+      </div>
+    </section>
+    <button type="button" title="go-to-top" id="btnGoTop" class="btn-go-top"><i
+        class="fa-solid fa-arrow-up"></i></button>
+    <div class="loader-container d-none" id="loader-container"><span class="loader"></span></div>
+
+
+    <!-- Egyptian-themed decorative elements -->
+    <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+      style="top: 20px; left: 20px;">𓁹</div>
+    <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+      style="top: 20px; right: 20px;">𓂀</div>
+    <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+      style="bottom: 20px; left: 20px;">𓃭</div>
+    <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+      style="bottom: 20px; right: 20px;">𓅱</div>
+
+    <!-- Floating Hieroglyphs -->
+    <div class="hieroglyph animate__animated animate__bounce animate__infinite animate__slower"
+      style="top: 15%; left: 10%;">𓊽</div>
+    <div class="hieroglyph animate__animated animate__pulse animate__infinite animate__slower"
+      style="top: 25%; right: 15%;">☥</div>
+    <div class="hieroglyph animate__animated animate__swing animate__infinite animate__slower"
+      style="bottom: 20%; left: 15%;">𓆸</div>
+  </main>
+  <footer id="contact-us" class="egypt-footer">
+    <div class="footer-pyramid-border"></div>
+
+    <div class="footer-content">
+      <div class="container">
+        <div class="row g-4">
+          <!-- Logo & About Column -->
+          <div class="col-lg-4">
+            <div class="footer-brand">
+              <div class="footer-ankh">☥</div>
+              <h3 class="footer-title">Pharaohs Legacy</h3>
+              <div class="footer-ankh">☥</div>
+            </div>
+            <p class="footer-description">
+              Embark on a journey through time to discover the mysteries and magnificence of ancient Egyptian
+              civilization.
+            </p>
+            <div class="social-links">
+              <a title="facebook-link" href="#" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a title="twitter-link" href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a title="instagram-link" href="#" class="social-link">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a title="youtube-link" href="#" class="social-link">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-lg-2 col-md-4">
+            <h4 class="footer-subtitle">Explore</h4>
+            <ul class="footer-links">
+              <li><a href="https://pharaohslegacy.cloud/landmarks">Ancient Sites</a></li>
+              <li><a href="https://pharaohslegacy.cloud/trips">Book Tour </a></li>
+              <li><a href="https://pharaohslegacy.cloud/virtualTour">Virtual Tours </a></li>
+              <li><a href="https://pharaohslegacy.cloud/hotels">Hotels</a></li>
+              <li><a href="https://pharaohslegacy.cloud/airports">Airports</a></li>
+              <li><a href="https://pharaohslegacy.cloud/shoppingCenters">shopping Centers</a></li>
+            </ul>
+          </div>
+
+          <!-- Support -->
+          <div class="col-lg-2 col-md-4">
+            <h4 class="footer-subtitle">Support</h4>
+            <ul class="footer-links">
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Travel Tips</a></li>
+              <li><a href="#">Safety Info</a></li>
+              <li><a href="#">Help Center</a></li>
+            </ul>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="col-lg-4 col-md-4">
+            <h4 class="footer-subtitle">Join Our Newsletter</h4>
+            <p class="newsletter-text">Subscribe to receive updates about ancient Egyptian discoveries and exclusive
+              tour offers.</p>
+            <div class="newsletter-form">
+              <input type="email" placeholder="Enter your email" class="newsletter-input">
+              <button title="send" class="newsletter-btn">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <p class="copyright">© 2025 Pharaohs Legacy. All rights reserved.</p>
+          </div>
+          <div class="col-md-6">
+            <ul class="bottom-links">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Sitemap</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

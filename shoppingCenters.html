@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Centers in Egypt | Where Pharaohs Meet Fashion </title>
+    <meta name="description"
+        content="Discover the best shopping centers in Egypt. top malls and markets for tourists. Explore modern malls, local markets, and traditional bazaars in Cairo, Alexandria, and across Egypt.">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://pharaohslegacy.cloud/shoppingCenters" />
+
+    <meta property="og:title"
+        content="Top Shopping Centers in Egypt | Where Pharaohs Meet Fashion | Explore Malls & Markets" />
+    <meta property="og:description"
+        content="Plan your shopping experience in Egypt with our guide to the best malls, outlets, and local markets for souvenirs and fashion." />
+    <meta property="og:url" content="https://pharaohslegacy.cloud/shoppingCenters" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://pharaohslegacy.cloud/images/meta-tag-logo.jpg" />
+
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/toastr.min.css">
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/shoppingcenters.css" />
+    <link rel="shortcut icon" href="images/meta-tag-logo.jpg" type="image/x-icon">
+
+    <!-- JS files -->
+
+    <script defer src="js/bootstrap.bundle.min.js"></script>
+    <script defer src="js/jwt.min.js"></script>
+    <script defer src="js/jquery-3.7.1.min.js"></script>
+    <script defer src="js/toastr.min.js"></script>
+    <script defer src="js/global.js"></script>
+    <script defer src="js/shoppingCenters.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg px-3" id="nav-bar">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/main-logo.png" alt="logo">
+        </a>
+
+        <!-- Toggle button for small screens -->
+        <button title="settings" class="navbar-toggler text-white fs-3" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Center nav for large screens only -->
+        <div class="d-none d-lg-flex  nav-center">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a data-name="index" class="nav-link fs-6 " href="index.html"><i class="fa-solid fa-house"></i>
+                        Home</a>
+                </li>
+                <li class="nav-item">
+                    <a data-name="stories" class="nav-link fs-6 " href="stories.html"><i
+                            class="fa-solid fa-people-group"></i>
+                        Stories</a>
+                </li>
+                <li class="nav-item">
+                    <a data-name="virtualTour" class="nav-link fs-6 " href="virtualTour.html"><i
+                            class="fa-solid fa-vr-cardboard"></i></i>
+                        Virtual Tour</a>
+                </li>
+                <li class="nav-item dropdown categories-dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Categories</a>
+                    <ul class="dropdown-menu ">
+                        <li><a href="trips.html" class="dropdown-item" data-name="trips"><i
+                                    class="fa-solid fa-suitcase-rolling me-1"></i> Trips</a></li>
+                        <li><a href="hotels.html" class="dropdown-item" data-name="hotels"><i
+                                    class="fa-solid fa-hotel me-1"></i>
+                                Hotels</a></li>
+                        <li><a href="airports.html" class="dropdown-item" data-name="airports"><i
+                                    class="fa-solid fa-plane-departure me-1"></i> Airports</a></li>
+                        <li><a href="landmarks.html" class="dropdown-item" data-name="landmarks"><i
+                                    class="fa-solid fa-mountain-sun me-1"></i> Landmarks</a></li>
+                        <li><a href="restaurants.html" class="dropdown-item" data-name="restaurants"><i
+                                    class="fa-solid fa-utensils me-1"></i> Restaurants</a></li>
+                        <li><a href="shoppingCenters.html" class="dropdown-item" data-name="shoppingCenters"><i
+                                    class="fa-solid fa-shop me-1"></i> Shopping Centers</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <!-- Right side icons (desktop only) -->
+        <div class="d-none d-lg-flex ms-auto">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button class="nav-link" data-name="favorite" id="navbar-favorite-btn"><i class="fas fa-heart"></i>
+                        Favorites</button>
+                </li>
+                <li class="nav-item dropdown settings-dropdown ">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-cog"></i>
+                        Settings</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button class="dropdown-item " data-name="profile" id="navbar-profile-btn"><i
+                                    class="fas fa-user me-1"></i> Account</button></li>
+                        <li><button class="dropdown-item text-danger d-none" id="logout-btn"> <i
+                                    class="fa-solid fa-right-from-bracket me-1"></i> Logout</button></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Offcanvas Sidebar (Mobile) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Menu</h5>
+            <button title="close button" type="button" class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <a data-name="index" class="nav-link " href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a data-name="stories" class="nav-link " href="stories.html"><i
+                    class="fa-solid fa-people-group"></i>Stories</a>
+            <a data-name="virtualTour" class="nav-link " href="virtualTour.html"><i
+                    class="fa-solid fa-vr-cardboard"></i></i>
+                Virtual Tour</a>
+            <a data-name="landmarks" class="nav-link" href="landmarks.html"><i class="fa-solid fa-mountain-sun"></i>
+                Landmarks</a>
+            <a data-name="hotels" class="nav-link" href="hotels.html"><i class="fa-solid fa-hotel"></i> Hotels</a>
+            <a data-name="airports" class="nav-link" href="airports.html"><i class="fa-solid fa-plane-departure"></i>
+                Airports</a>
+            <a data-name="trips" class="nav-link" href="trips.html"><i class="fa-solid fa-suitcase-rolling"></i>
+                Trips</a>
+            <a data-name="restaurants" class="nav-link" href="restaurants.html"><i class="fa-solid fa-utensils"></i>
+                Restaurants</a>
+            <a data-name="shoppingCenters" class="nav-link" href="shoppingCenters.html"><i class="fa-solid fa-shop"></i>
+                Shopping Centers</a>
+            <button class="nav-link" id="navbar-sidebar-favorite-btn" data-name="favorite"><i class="fas fa-heart"></i>
+                Favorites</button>
+            <button class="dropdown-item nav-link" data-name="profile" id="navbar-sidebar-profile-btn"><i
+                    class="fas fa-user"></i>
+                Account</button>
+            <button class="dropdown-item text-danger d-none" id="logout-sidebar-btn"> <i
+                    class="fa-solid fa-right-from-bracket "></i> Logout</button>
+        </div>
+    </div>
+    <!-- END Navbar -->
+
+    <main>
+        <div class="container my-5 pt-5">
+            <h1 class="text-center  animate__animated animate__fadeIn pt-2 text-warning">
+                <i class="fa-solid fa-store"></i> Shopping Centers
+            </h1>
+            <p class="text-center text-muted  animate__animated animate__fadeIn m-0 mb-5"> WHERE PHARAOHS MEET FASHION
+            </p>
+            <div class="filter-section p-4 mb-5 animate__animated animate__fadeIn animate__delay-1s">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="nameFilter" class="form-label">Search Shopping Centers</label>
+                        <input type="text" class="form-control" id="nameFilter"
+                            placeholder="Enter shopping-centers name...">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cityFilter" class="form-label">Filter by City</label>
+                        <select class="form-select" id="cityFilter">
+                            <option value="" selected>All Cities</option>
+                            <option value="Alexandria">Alexandria</option>
+                            <option value="Aswan">Aswan</option>
+                            <option value="Asyut">Asyut</option>
+                            <option value="BeniSuef">Beni Suef</option>
+                            <option value="Cairo">Cairo</option>
+                            <option value="Dahab">Dahab</option>
+                            <option value="Damietta">Damietta</option>
+                            <option value="ElArish">El Arish</option>
+                            <option value="Faiyum">Faiyum</option>
+                            <option value="Giza">Giza</option>
+                            <option value="Hurghada">Hurghada</option>
+                            <option value="Ismailia">Ismailia</option>
+                            <option value="Luxor">Luxor</option>
+                            <option value="Mansoura">Mansoura</option>
+                            <option value="MarsaAlam">Marsa Alam</option>
+                            <option value="MarsaMatruh">Marsa Matruh</option>
+                            <option value="Minya">Minya</option>
+                            <option value="NewCairo">New Cairo</option>
+                            <option value="PortSaid">Port Said</option>
+                            <option value="Qena">Qena</option>
+                            <option value="SharmElSheikh">Sharm El Sheikh</option>
+                            <option value="Sohag">Sohag</option>
+                            <option value="Suez">Suez</option>
+                            <option value="Tanta">Tanta</option>
+                            <option value="Zagazig">Zagazig</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4" id="centersList">
+                <!-- <div class="col-12 col-md-6 col-lg-4 col-xl-4">
+                    <div class="card restaurant-card animate__animated animate__fadeInUp">
+                        <img src="images/resturants.png" class="card-img-top " alt="Restaurant Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Tasty Bistro</h5>
+                            <div class="cuisine-city">
+                                <i class="fas fa-utensils me-1"></i> Italian | <i
+                                    class="fas fa-map-marker-alt me-1"></i> New York
+                            </div>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="ms-2">4.2 (128 reviews)</span>
+                            </div>
+                            <p class="card-text">A cozy restaurant serving delicious Italian cuisine with fresh
+                                ingredients and a
+                                warm atmosphere.</p>
+                            <div class="airports-actions d-flex justify-content-between">
+                                <button class="btn btn-favorite"><i class="far fa-heart me-2"></i>Add to
+                                    Favorites</button>
+                                <button class="btn btn-details">Explore <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+
+            </div>
+        </div>
+        <section id="loginModal" class="modal">
+            <div class="modal-content">
+                <h2>Login Required</h2>
+                <p>You must log in first to perform this action.</p>
+                <div class="modal-buttons">
+                    <button id="login-modal-btn" onclick="authLoginGoToLogin()">Log In</button>
+                    <button id="close-modal-btn" onclick="authLoginCloseModal()">Close</button>
+                </div>
+            </div>
+        </section>
+        <button type="button" title="btn-go-top" id="btnGoTop" class="btn-go-top"><i
+                class="fa-solid fa-arrow-up"></i></button>
+
+    </main>
+    <div class="loader-container" id="loader-container">
+        <span class="loader"></span>
+    </div>
+
+    <!-- Egyptian-themed decorative elements -->
+    <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+        style="top: 20px; left: 20px;">𓁹</div>
+    <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+        style="top: 20px; right: 20px;">𓂀</div>
+    <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+        style="bottom: 20px; left: 20px;">𓃭</div>
+    <div class="sacred-symbol animate__animated animate__fadeIn animate__infinite animate__slower"
+        style="bottom: 20px; right: 20px;">𓅱</div>
+
+    <!-- Floating Hieroglyphs -->
+    <div class="hieroglyph animate__animated animate__bounce animate__infinite animate__slower"
+        style="top: 15%; left: 10%;">𓊽</div>
+    <div class="hieroglyph animate__animated animate__pulse animate__infinite animate__slower"
+        style="top: 25%; right: 15%;">☥</div>
+    <div class="hieroglyph animate__animated animate__swing animate__infinite animate__slower"
+        style="bottom: 20%; left: 15%;">𓆸</div>
+    <!-- Footer -->
+    <footer id="contact-us" class="egypt-footer">
+        <div class="footer-pyramid-border"></div>
+
+        <div class="footer-content">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Logo & About Column -->
+                    <div class="col-lg-4">
+                        <div class="footer-brand">
+                            <div class="footer-ankh">☥</div>
+                            <h3 class="footer-title">Pharaohs Legacy</h3>
+                            <div class="footer-ankh">☥</div>
+                        </div>
+                        <p class="footer-description">
+                            Embark on a journey through time to discover the mysteries and magnificence of ancient
+                            Egyptian
+                            civilization.
+                        </p>
+                        <div class="social-links">
+                            <a title="facebook-link" href="#" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a title="twitter-link" href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a title="instagram-link" href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a title="youtube-link" href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-4">
+                        <h4 class="footer-subtitle">Explore</h4>
+                        <ul class="footer-links">
+                            <li><a href="https://pharaohslegacy.cloud/landmarks">Ancient Sites</a></li>
+                            <li><a href="https://pharaohslegacy.cloud/trips">Book Tour </a></li>
+                            <li><a href="https://pharaohslegacy.cloud/virtualTour">Virtual Tours </a></li>
+                            <li><a href="https://pharaohslegacy.cloud/hotels">Hotels</a></li>
+                            <li><a href="https://pharaohslegacy.cloud/airports">Airports</a></li>
+                            <li><a href="https://pharaohslegacy.cloud/shoppingCenters">shopping Centers</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Support -->
+                    <div class="col-lg-2 col-md-4">
+                        <h4 class="footer-subtitle">Support</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Travel Tips</a></li>
+                            <li><a href="#">Safety Info</a></li>
+                            <li><a href="#">Help Center</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="col-lg-4 col-md-4">
+                        <h4 class="footer-subtitle">Join Our Newsletter</h4>
+                        <p class="newsletter-text">Subscribe to receive updates about ancient Egyptian discoveries and
+                            exclusive
+                            tour offers.</p>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Enter your email" class="newsletter-input">
+                            <button title="send" class="newsletter-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="copyright">© 2025 Pharaohs Legacy. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="bottom-links">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Sitemap</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
